@@ -7,12 +7,18 @@ import * as path from 'path';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import * as apigateway_integrations from 'aws-cdk-lib/aws-apigatewayv2-integrations'
 
+interface LambdaGatewayCdkStackProps extends cdk.StackProps {
+  config?: any; // Puedes definir un tipo más específico si lo deseas
+}
+
 export class LambdaGatewayCdkStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props?: LambdaGatewayCdkStackProps) {
     super(scope, id, {
       ...props,
       description: 'Prueba CDK con Lambda - No Home'
     });
+
+    const config = props?.config;
 
     const commonlambdaProps = {
       runtime:lambda.Runtime.NODEJS_24_X,
@@ -25,7 +31,7 @@ export class LambdaGatewayCdkStack extends cdk.Stack {
     };
 
     const exampleLambda01 = new NodejsFunction(this, 'ExampleLambda',{
-      functionName:'jrg-lambda01-gateway01-cdk-demo03',
+      functionName:'jrg-lambda000-gateway003-cdk-demo03',
       entry: path.join(__dirname, '../src/lambda/lambdaMessage.ts'),
       ...commonlambdaProps,
     });
@@ -36,14 +42,20 @@ export class LambdaGatewayCdkStack extends cdk.Stack {
     });
 
     const exampleLambdaGateway01 = new NodejsFunction(this, 'ExampleLambdaGateway01',{
-      functionName:'jrg-lambda-gateway001-cdk-demo03',
+      functionName:'jrg-lambda000-gateway001-cdk-demo03',
       entry: path.join(__dirname, '../src/lambda/lambdaGatewayPostToGet.ts'),
+      environment: {
+        URL: config?.URL_GET,
+      },
       ...commonlambdaProps,
     })
 
     const exampleLambdaGateway02 = new NodejsFunction(this, 'ExampleLambdaGateway02',{
-      functionName: 'jrg-lambda-gateway002-cdk-demo03',
+      functionName: 'jrg-lambda000-gateway002-cdk-demo03',
       entry: path.join(__dirname, '../src/lambda/lambdaGatewayPostToPost.ts'),
+      environment: {
+        URL: config.URL_POST,
+      },
       ...commonlambdaProps
 ,    })
 

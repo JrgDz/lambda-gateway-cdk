@@ -30,7 +30,7 @@ export const handler = async(event: APIGatewayProxyEvent): Promise<APIGatewayPro
             }
         }
 
-        const url = `https://reqres.in/api/users`;
+        const url = process.env.URL as string;
         console.log(`Enviando datos a ReqRes API -URL: ${url} - Datos: ${JSON.stringify(body)}`);
 
         const response = await fetch(url,{

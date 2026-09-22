@@ -1,9 +1,9 @@
 name: Deploy CDK Infrastructure
 
-# Define cuándo se activará el pipeline (por ejemplo, en cada push a la rama main)
+# Define cuándo se activará el pipeline (por ejemplo, en cada push a la rama master)
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   deploy:
