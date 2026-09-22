@@ -36,11 +36,12 @@ jobs:
       # 5. Ejecutar el despliegue del CDK inyectando las variables del sistema
       - name: CDK Deploy
         env:
-          STAGE: dev
-          VPC_ID: ${{ secrets.VPC_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           URL_GET: ${{ secrets.URL_GET }}
           URL_POST: ${{ secrets.URL_POST }}
           TIMEOUT_MS: ${{ secrets.TIMEOUT_MS }}
+          VPC_ID: ${{ secrets.VPC_ID }}
           # Agrega aquí el resto de variables que tu clase BuildConfig requiera
         run: |
           npx cdk deploy --require-approval never
