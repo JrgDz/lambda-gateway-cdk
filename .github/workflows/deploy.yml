@@ -40,7 +40,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           URL_GET: ${{ secrets.URL_GET }}
           URL_POST: ${{ secrets.URL_POST }}
-          TIMEOUT_MS: ${{ secrets.TIMEOUT_MS }}
           VPC_ID: ${{ secrets.VPC_ID }}
           # Agrega aquí el resto de variables que tu clase BuildConfig requiera
         run: |
