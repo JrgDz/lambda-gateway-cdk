@@ -45,7 +45,7 @@ export class LambdaGatewayCdkStack extends cdk.Stack {
       functionName:'jrg-lambda000-gateway001-cdk-demo03',
       entry: path.join(__dirname, '../src/lambda/lambdaGatewayPostToGet.ts'),
       environment: {
-        URL: config?.URL_GET,
+        URL_GET: config?.URL_GET,
       },
       ...commonlambdaProps,
     })

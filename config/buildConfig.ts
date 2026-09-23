@@ -9,20 +9,13 @@ export class BuildConfig {
         this.stage = stage;
     }
 
-    async getConfig(): Promise<any> {
+    getConfig(): any {
         dotnet.config({quiet:true});
+        return {
+            STAGE: this.stage,
+            URL_GET: process.env.URL_GET,
+            URL_POST: process.env.URL_POST
+        };
 
-            try {
-                const buildConfigResponse : any ={
-                    STAGE: this.stage,
-                    URL_GET: process.env.URL_GET,
-                    URL_POST: process.env.URL_POST
-                }
-                return buildConfigResponse;
-            } catch (error) {
-                return {
-                    STAGE: this.stage
-                }
-            }
     }
 }
