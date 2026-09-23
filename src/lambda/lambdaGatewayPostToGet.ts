@@ -40,7 +40,8 @@ export const handler = async(event: APIGatewayProxyEvent): Promise<APIGatewayPro
             }
         }
 
-        const url = `https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`;
+        const baseUrl = process.env.URL as string;
+        const url = `${baseUrl}${pokemon.toLowerCase()}`;
         console.log('Consultando PokeAPI para: ${pokemon} - URL: ${url}');
 
         const response =  await fetch(url);
