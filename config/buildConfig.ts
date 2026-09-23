@@ -12,12 +12,6 @@ export class BuildConfig {
     getConfig(): any {
         dotnet.config({quiet:true});
 
-        const required = ['URL_GET', 'URL_POST'];
-        const missing = required.filter((k) => !process.env[k]);
-        if (missing.length > 0) {
-            throw new Error(`Faltan variables de entorno: ${missing.join(', ')}`);
-        }
-
         return {
             STAGE: this.stage,
             URL_GET: process.env.URL_GET,
