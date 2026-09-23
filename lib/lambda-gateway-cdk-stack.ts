@@ -28,10 +28,11 @@ export class LambdaGatewayCdkStack extends cdk.Stack {
           minify: true,
           externalModules: ["aws-sdk"],
         },
+      removalPolicy: cdk.RemovalPolicy.DESTROY
     };
 
     const exampleLambda01 = new NodejsFunction(this, 'ExampleLambda',{
-      functionName:'jrg-lambda000-gateway003-cdk-demo03',
+      functionName:'jrg-lambda000-gateway003-cdk-demo04',
       entry: path.join(__dirname, '../src/lambda/lambdaMessage.ts'),
       ...commonlambdaProps,
     });
@@ -42,7 +43,7 @@ export class LambdaGatewayCdkStack extends cdk.Stack {
     });
 
     const exampleLambdaGateway01 = new NodejsFunction(this, 'ExampleLambdaGateway01',{
-      functionName:'jrg-lambda000-gateway001-cdk-demo03',
+      functionName:'jrg-lambda000-gateway001-cdk-demo04',
       entry: path.join(__dirname, '../src/lambda/lambdaGatewayPostToGet.ts'),
       environment: {
         URL_GET: config.URL_GET,
@@ -51,7 +52,7 @@ export class LambdaGatewayCdkStack extends cdk.Stack {
     })
 
     const exampleLambdaGateway02 = new NodejsFunction(this, 'ExampleLambdaGateway02',{
-      functionName: 'jrg-lambda000-gateway002-cdk-demo03',
+      functionName: 'jrg-lambda000-gateway002-cdk-demo04',
       entry: path.join(__dirname, '../src/lambda/lambdaGatewayPostToPost.ts'),
       environment: {
         URL: config.URL_POST,
